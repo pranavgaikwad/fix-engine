@@ -1156,7 +1156,9 @@ Instructions:
 
 Before writing, reason through the fix step by step to ensure nothing is missed. Then read the file, make the edit, and write it.
 
-After writing the file, produce a '## Changes Applied' section that lists the change you made, or note if the fix was already applied or could not be applied (with a brief reason)."#,
+After writing the file, produce a '## Changes Applied' section that lists the change you made, or note if the fix was already applied or could not be applied (with a brief reason).
+
+After all fixes are applied, retrieve the existing application summary from memory, merge it with a brief summary of changes from this session, and save the updated summary back. Keep the merged summary concise — compress without losing important details."#,
         migration_desc = ctx.migration_description(),
         file_path = request.file_path.display(),
         lines = lines_display,
@@ -1343,7 +1345,9 @@ Instructions:
 {verification_section}
 Before writing, reason through each fix step by step to ensure nothing is missed. Then read the file, make the edits, and write it.
 
-After writing the file, produce a '## Changes Applied' section that lists each change you made, each fix that was already applied (no change needed), and each fix you could not apply (with a brief reason). This summary is used by subsequent processing steps."#,
+After writing the file, produce a '## Changes Applied' section that lists each change you made, each fix that was already applied (no change needed), and each fix you could not apply (with a brief reason). This summary is used by subsequent processing steps.
+
+After all fixes are applied, retrieve the existing application summary from memory, merge it with a brief summary of changes from this session, and save the updated summary back. Keep the merged summary concise — compress without losing important details."#,
         migration_desc = ctx.migration_description(),
         file_path = file_path.display(),
         test_files_section = test_files_section,
