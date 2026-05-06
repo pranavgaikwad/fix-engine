@@ -393,8 +393,8 @@ pub fn run_all_goose_fixes(
 
     let bar = printer.start_counted(
         &format!(
-            "Goose fixes ({} fixes across {} files, {} concurrent)",
-            total_fixes, total_files, MAX_CONCURRENT_FILES,
+            "Goose fixes ({} fixes across {} files, {} concurrent, cwd: {})",
+            total_fixes, total_files, MAX_CONCURRENT_FILES, project_dir.display(),
         ),
         total_files as u64,
     );
@@ -1158,7 +1158,7 @@ Before writing, reason through the fix step by step to ensure nothing is missed.
 
 After writing the file, produce a '## Changes Applied' section that lists the change you made, or note if the fix was already applied or could not be applied (with a brief reason).
 
-After all fixes are applied, retrieve the existing application summary from memory, merge it with a brief summary of changes from this session, and save the updated summary back. Keep the merged summary concise — compress without losing important details."#,
+After all fixes are applied, append exactly one line summarizing the work done to a file called progress.md in the project root. Do not use any other tools or mechanisms to store progress — only append to progress.md."#,
         migration_desc = ctx.migration_description(),
         file_path = request.file_path.display(),
         lines = lines_display,
@@ -1347,7 +1347,7 @@ Before writing, reason through each fix step by step to ensure nothing is missed
 
 After writing the file, produce a '## Changes Applied' section that lists each change you made, each fix that was already applied (no change needed), and each fix you could not apply (with a brief reason). This summary is used by subsequent processing steps.
 
-After all fixes are applied, retrieve the existing application summary from memory, merge it with a brief summary of changes from this session, and save the updated summary back. Keep the merged summary concise — compress without losing important details."#,
+After all fixes are applied, append exactly one line summarizing the work done to a file called progress.md in the project root. Do not use any other tools or mechanisms to store progress — only append to progress.md."#,
         migration_desc = ctx.migration_description(),
         file_path = file_path.display(),
         test_files_section = test_files_section,
